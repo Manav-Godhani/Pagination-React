@@ -25,7 +25,10 @@ function App() {
       {
         products.length>0 && <div className='products'>
           {products.map((prd)=>{
-            return <span>{prd.title}</span>
+            return <span className='products__single' key={prd.id}>
+              <img src={prd.thumbnail} alt={prd.title}/>
+              <span>{prd.title}</span>
+            </span>
           })}
         </div>
       }
