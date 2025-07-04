@@ -18,13 +18,18 @@ function App() {
     fetchData();
   },[]);
 
+  const selectPageHandler = (selecetdPage) => {
+    setPage(selecetdPage);
+  }
+
   console.log(products);
   
   return (
     <div>
+      <center><h4><b>Pagination using dummy json data</b></h4></center>
       {
         products.length>0 && (<div className='products'>
-          {products.slice(page*10-10,page * 10).map((prd)=>{
+          {products.slice(page*6-6,page * 6).map((prd)=>{
             return <span className='products__single' key={prd.id}>
               <img src={prd.thumbnail} alt={prd.title}/>
               <span>{prd.title}</span>
@@ -35,13 +40,13 @@ function App() {
 
       {
         products.length>0 && <div className='pagination'>
-          <span>⬅️</span>
+          {/* <span>⬅️</span> */}
           {
-            [...Array(products.length/10)].map((_,i)=>{
-              return <span>{i + 1}</span>
+            [...Array(products.length/6)].map((_,i)=>{
+              return <span className={page===i+1? "PaginationSelected" : ""} onClick={()=>selectPageHandler(i + 1)} key={i}>{i+1}</span>
             })
           }
-          <span>➡️</span>
+          {/* <span>➡️</span> */}
         </div>
       }
     </div>
